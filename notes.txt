@@ -1,0 +1,5 @@
+/api/v1/tours/:id/:x/:y?   :y? parameter value optional
+
+>> npm i eslint prettier eslint-config-prettier eslint-plugin-prettier eslint-config-airbnb eslint-plugin-node eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react --save-dev
+this packages for formating and linting code with two files eslintrc.json & .prettierrc
+
