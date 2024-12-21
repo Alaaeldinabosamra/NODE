@@ -11,7 +11,7 @@ const userRouter = require('./routes/userRoutes');
 const app = express();
 
 // Middlewares
-if (process.env.NODE_ENV === 'development') {
+if (process.env.NODE_ENV === 'developmentt') {
   app.use(morgan('dev'));
   app.use((req, res, next) => {
     console.log('Hello from the middleware!');
