@@ -3,3 +3,25 @@
 >> npm i eslint prettier eslint-config-prettier eslint-plugin-prettier eslint-config-airbnb eslint-plugin-node eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react --save-dev
 this packages for formating and linting code with two files eslintrc.json & .prettierrc
 
+
+console.log(`\x1b[34mApp running on port ${port}...\x1b[0m`);
+console.log('\x1b[35mDB connection successful!\x1b[0m');
+
+Black: \x1b[30m
+Red: \x1b[31m
+Green: \x1b[32m
+Yellow: \x1b[33m
+Blue: \x1b[34m
+Magenta: \x1b[35m
+Cyan: \x1b[36m
+White: \x1b[37m
+
+
+set a environment variable in windows
+ "start:prod": "set NODE_ENV = production && nodemon server.js",
+
+will close app automatically when write command process.exit(1)
+ nodemon --exitcrash server.js
+
+
+ helmet() هو ميدل وير في تطبيقات Express.js بيضيف هيدرز أمنية علشان يحسن أمان التطبيق. بيحمي التطبيق من هجمات زي XSS (التنفيذ العكسي للسكريبتات) و clickjacking (إخفاء رابط في صفحة تانية). كمان بيمنع المتصفح من عرض المحتوى في إطارات من مواقع تانية، وبيشجع على استخدام HTTPS. كده بيساعد على تقليل الثغرات الأمنية في التطبيق.
