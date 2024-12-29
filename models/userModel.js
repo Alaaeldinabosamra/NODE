@@ -60,6 +60,8 @@ const userSchema = new mongoose.Schema({
   },
 });
 
+// all the safe middlewares is not run with FindByIdAndUpdate
+// هذا يحدث لأن Mongoose لا يقوم بتحميل المستند أولًا، بل يتم تحديثه مباشرة في قاعدة البيانات دون تنفيذ الميدل وير المعتادة التي قد تعدل البيانات.
 userSchema.pre('save', async function (next) {
   // only run this function if password was actually modified
   if (!this.isModified('password')) return next();
@@ -69,6 +71,13 @@ userSchema.pre('save', async function (next) {
 
   //  delete passwordconfirm field
   this.passwordConfirm = undefined;
+  next();
+});
+
+userSchema.pre('save', function (next) {
+  if (!this.isModified('password') || this.isNew) return next();
+
+  this.passwordChangedAt = Date.now();
   next();
 });
 
@@ -85,13 +94,6 @@ userSchema.pre(/^find/, function (next) {
 //   next();
 // });
 
-userSchema.pre('save', function (next) {
-  if (!this.isModified('password') || this.isNew) return next();
-
-  this.passwordChangedAt = Date.now();
-  next();
-});
-
 userSchema.methods.correctPassword = async function (
   candidatePassword,
   userPassword,
@@ -105,7 +107,7 @@ userSchema.methods.changePasswordAfter = function (JWTTimestamp) {
       this.passwordChangedAt.getTime() / 1000,
       10,
     );
-    console.log(changeTimestamp, JWTTimestamp);
+    // console.log(changeTimestamp, JWTTimestamp);
     return JWTTimestamp < changeTimestamp;
   }
 
@@ -128,6 +130,6 @@ userSchema.methods.createPasswordResetToken = function () {
   return resetToken;
 };
 
-const User = mongoose.model('user', userSchema);
+const User = mongoose.model('User', userSchema);
 
 module.exports = User;
