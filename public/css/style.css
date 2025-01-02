@@ -1234,7 +1234,7 @@ body {
   margin: 0 auto;
 }
 
-.login-form {
+.form__Container {
   margin: 0 auto;
   max-width: 55rem;
   background-color: #fff;
