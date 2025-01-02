@@ -25,3 +25,8 @@ will close app automatically when write command process.exit(1)
 
 
  helmet() هو ميدل وير في تطبيقات Express.js بيضيف هيدرز أمنية علشان يحسن أمان التطبيق. بيحمي التطبيق من هجمات زي XSS (التنفيذ العكسي للسكريبتات) و clickjacking (إخفاء رابط في صفحة تانية). كمان بيمنع المتصفح من عرض المحتوى في إطارات من مواقع تانية، وبيشجع على استخدام HTTPS. كده بيساعد على تقليل الثغرات الأمنية في التطبيق.
+
+
+//- Pug beautify extension + CMD + Shift + P and choose for format pug code and indentation
+
+| + space make space in pug template engine

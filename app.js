@@ -1,4 +1,5 @@
 // core modules
+const path = require('path');
 
 // third-party modules
 const express = require('express');
@@ -8,6 +9,7 @@ const helmet = require('helmet');
 const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
 const hpp = require('hpp');
+const cookieParser = require('cookie-parser');
 
 // custom modules
 const AppError = require('./utils/appError');
@@ -15,9 +17,18 @@ const globalErrorHandler = require('./controllers/errorController');
 const tourRouter = require('./routes/tourRoutes');
 const userRouter = require('./routes/userRoutes');
 const reviewRouter = require('./routes/reviewRoutes');
+const viewRouter = require('./routes/viewRoutes');
 
 // init app
 const app = express();
+
+// Setup the templete engine in express
+app.set('view engine', 'pug');
+app.set('views', path.join(__dirname, 'views'));
+
+// Serving static files because we need serve static files
+// app.use(express.static(`${__dirname}/public`));
+app.use(express.static(path.join(__dirname, 'public')));
 
 // GLOBAL Middlewares
 
@@ -44,6 +55,7 @@ app.use('/api', limiter);
 
 // Body parser, reading data from body into req.body
 app.use(express.json({ limit: '10kb' }));
+app.use(cookieParser());
 
 // Data sanitization against NoSQL query injection [prevent doing stuff like this  "email": {"$gt": ""}, this always be true to it get all users emails ]
 app.use(mongoSanitize());
@@ -65,17 +77,32 @@ app.use(
   }),
 );
 
-// Serving static files because we need serve static files
-app.use(express.static(`${__dirname}/public`));
-
 // Test middleware
 app.use((req, res, next) => {
   req.requestTime = new Date().toISOString();
   // console.log(req.headers);
+  // console.log(req.cookies);
+
   next();
 });
 
-// Endpoints & Route
+// allow Leaflet to access out source to display map in our app
+app.use((req, res, next) => {
+  // res.setHeader(
+  //   'Content-Security-Policy',
+  //   "script-src 'self' https://unpkg.com;",
+  // );
+
+  res.setHeader(
+    'Content-Security-Policy',
+    "script-src 'self' https://unpkg.com https://cdn.jsdelivr.net; object-src 'none';",
+  );
+  next();
+});
+
+// Endpoints & Routes
+
+app.use('/', viewRouter);
 app.use('/api/v1/tours', tourRouter);
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/reviews', reviewRouter);
