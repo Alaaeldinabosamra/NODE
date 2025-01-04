@@ -19,4 +19,6 @@ router.post(
   viewsController.UpdateUserData,
 );
 
+router.get('/manage-tour', authController.protect, viewsController.ManageTour);
+
 module.exports = router;

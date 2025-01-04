@@ -1,0 +1,54 @@
+
+.user-view__form-container
+  h2.heading-secondary.ma-bt-md Create new Tour
+
+  form.form.form-tour-data  
+    .form__group
+      label.form__label(for='tourName') Tour Name
+      input#tourName.form__input(type='text', required, name='name')
+      
+    .form__group.ma-bt-md
+      label.form__label(for='duration') Duration (in days)
+      input#duration.form__input(type='number', required, name='duration')
+      
+    .form__group.ma-bt-md
+      label.form__label(for='maxGroupSize') Max Group Size
+      input#maxGroupSize.form__input(type='number', required, name='maxGroupSize')
+
+    .form__group.ma-bt-md
+      label.form__label(for='difficulty') Difficulty
+      select#difficulty.form__input(name='difficulty')
+        option(value='easy') Easy
+        option(value='medium') Medium
+        option(value='hard') Hard
+
+    .form__group.ma-bt-md
+      label.form__label(for='price') Price ($)
+      input#price.form__input(type='number', required, name='price')
+
+    .form__group.ma-bt-md
+      label.form__label(for='summary') Summary
+      textarea#summary.form__input(name='summary')
+
+    .form__group.ma-bt-md
+      label.form__label(for='description') Description
+      textarea#description.form__input(name='description')
+
+    .form__group.file__container
+      img.form__tour-cover(src='/img/tours/default.jpg', alt='Tour Cover Image', id='tourCoverImage')
+      div
+        input.form__upload(type='file', accpet='image/*', id='imageCover', name='imageCover')
+        label.form__label(for='imageCover') Cover Image
+        p#file-name.file__text No file selected
+
+    .form__group.ma-bt-md
+      label.form__label(for='tourDate') Tour Date and Time
+      input#tourDate.form__input(type='datetime-local', required, name='tourDate')
+      
+    .form__selected-dates#selectedDatesContainer
+      p#selectedDates No date selected yet
+    
+
+    .form__group.right
+      button.btn.btn--green  Create Tour
+

@@ -1296,11 +1296,30 @@ body {
   font-size: 1.6rem;
 }
 
+.file__text {
+  opacity: 0.7;
+  margin-left: 1rem;
+}
+
 .form__user-photo {
   height: 7.5rem;
   width: 7.5rem;
   border-radius: 50%;
   margin-right: 2rem;
+}
+
+.form__tour-cover {
+  height: 400px;
+  width: 400px;
+  margin-right: 2rem;
+  border-radius: 2%;
+}
+
+.file__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .form__upload {

@@ -1,0 +1,17 @@
+extends base
+
+include _navSidebar
+
+block content
+  main.main
+    .user-view
+      nav.user-view__menu
+        ul.side-nav
+          //- +navItem('#', 'Create Tour', 'aperture',true)
+          +navItem('#', 'Create Tour', 'plus-square', true)
+          +navItem('#', 'My Bookings', 'chevron-down')
+          +navItem('#', 'My reviews', 'check-square')
+          +navItem('#', 'Billing', 'droplet')
+    
+      .user-view__content
+        include _createTour

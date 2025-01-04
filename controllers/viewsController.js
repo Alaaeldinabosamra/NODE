@@ -71,3 +71,9 @@ exports.UpdateUserData = catchAsync(async (req, res, next) => {
     user: updatedUser,
   });
 });
+
+exports.ManageTour = (req, res) => {
+  res.status(200).render('manageTours', {
+    title: 'All About Tours',
+  });
+};

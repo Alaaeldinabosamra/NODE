@@ -1,11 +1,6 @@
 extend base
 
-mixin navItem(link, text, icon, active)
-  li(class=`${active ? 'side-nav--active': ''}`)
-    a(href=`${link}`)
-      svg
-        use(xlink:href=`img/icons.svg#icon-${icon}`)
-      | #{text}
+include _navSidebar
 
 block content 
   main.main
@@ -21,10 +16,11 @@ block content
           .admin-nav
             h5.admin-nav__heading Admin
             ul.side-nav
-              +navItem('#', 'Manage tours', 'map')
+              +navItem('/manage-tour', 'Manage tours', 'map')
               +navItem('#', 'Manage users', 'user')
               +navItem('#', 'Manage reviews', 'star')
-              +navItem('#', 'Manage Bookings', 'breifcase')
+              +navItem('#', 'Manage Bookings', 'briefcase')
+            
               
       .user-view__content
         .user-view__form-container
@@ -32,6 +28,7 @@ block content
           
           //- WITHOUT API
           //- form.form.form-user-data(action=`/submit-user-data` method='POST')
+          //- form.form.form-user-data(action=`/submit-user-data` method='POST' enctype='multipart/form-data') if using photo upload 
           
           //- WITH API
           form.form.form-user-data
@@ -43,7 +40,9 @@ block content
               input#email.form__input(type='email', value= `${user.email}`, required, name='email')
             .form__group.form__photo-upload
               img.form__user-photo(src=`/img/users/${user.photo}`, alt='User photo')
-              a.btn-text(href='') Choose new photo
+              input.form__upload(type='file', accpet='image/*', id='photo', name='photo')
+              label.form__label(for='photo') Choose new photo
+              p#file-name.file__text No file selected
             .form__group.right
               button.btn.btn--small.btn--green Save settings
         .line &nbsp;
