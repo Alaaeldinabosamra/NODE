@@ -3,6 +3,8 @@ import { displayMap } from './mapbox';
 import { login, logout, signup } from './login';
 import { updateSettings } from './updateSettings';
 import { createTour } from './manageTours';
+import { bookTour } from './stripe';
+import { showAlert } from './alerts';
 
 // DOM ELEMENTS
 const mapBox = document.getElementById('map');
@@ -14,6 +16,8 @@ const tourDataForm = document.querySelector('.form-tour-data');
 const userPasswordForm = document.querySelector('.form-user-password');
 const passwordInput = document.getElementById('password');
 const passwordConfirmInput = document.getElementById('passwordConfirm');
+const bookBtn = document.getElementById('book-tour');
+
 // DELEGATION
 if (mapBox) {
   const locationsData = JSON.parse(mapBox.dataset.locations);
@@ -173,3 +177,19 @@ if (tourDataForm)
     console.log(formData);
     createTour(formData);
   });
+
+if (bookBtn)
+  bookBtn.addEventListener('click', (e) => {
+    e.target.textContent = 'Processing...';
+    const { tourId } = e.target.dataset;
+    bookTour(tourId);
+  });
+if (bookBtn) {
+  // Show alert when mouse hovers over the button
+  bookBtn.addEventListener('mouseenter', () => {
+    showAlert(
+      'warn',
+      'Do not use sensitive data or real credit card. This is a beta version and still under testing!',
+    );
+  });
+}

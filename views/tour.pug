@@ -7,7 +7,7 @@ block head
   //- this belong to leaflet CDN for Map integration
   link(rel='stylesheet', href='https://unpkg.com/leaflet/dist/leaflet.css')
   script(src='https://unpkg.com/leaflet/dist/leaflet.js')
-  
+  script(src='https://js.stripe.com/v3/')
 mixin overviewBox(label , text , icon)
   .overview-box__detail
     svg.overview-box__icon
@@ -54,7 +54,7 @@ block content
               - if (guide.role === 'lead-guide')
                 span.overview-box__label  Lead guide
               - if (guide.role === 'guide')
-                span.overview-box__label Tour guide
+                span.overview-box__label Tour guide 
               - if (guide.role === 'admin')
                 span.overview-box__label Admin
               span.overview-box__text= guide.name
@@ -89,4 +89,9 @@ block content
       .cta__content
         h2.heading-secondary What are you waiting for?
         p.cta__text= `${tour.duration} days. 1 adventure. Infinite memories. Make it yours today!`
-        button.btn.btn--green.span-all-rows Book tour now!
+        
+        
+        if user 
+          button.btn.btn--green.span-all-rows#book-tour(data-tour-id=`${tour.id}`) Book tour now!
+        else 
+          a.btn.btn--green.span-all-rows(href='/login') Login in to book tour

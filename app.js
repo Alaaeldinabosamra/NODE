@@ -18,6 +18,7 @@ const tourRouter = require('./routes/tourRoutes');
 const userRouter = require('./routes/userRoutes');
 const reviewRouter = require('./routes/reviewRoutes');
 const viewRouter = require('./routes/viewRoutes');
+const bookingRouter = require('./routes/bookingRoutes');
 
 // init app
 const app = express();
@@ -96,7 +97,8 @@ app.use((req, res, next) => {
 
   res.setHeader(
     'Content-Security-Policy',
-    "script-src 'self' https://unpkg.com https://cdn.jsdelivr.net; object-src 'none';",
+    // "script-src 'self' https://unpkg.com https://cdn.jsdelivr.net; object-src 'none';",
+    "script-src 'self' https://unpkg.com https://cdn.jsdelivr.net https://js.stripe.com; object-src 'none';",
   );
   next();
 });
@@ -107,6 +109,7 @@ app.use('/', viewRouter);
 app.use('/api/v1/tours', tourRouter);
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/reviews', reviewRouter);
+app.use('/api/v1/bookings', bookingRouter);
 
 // app.get("/api/v1/tours", getAllTours);
 // app.get("/api/v1/tours/:id", getTour);
