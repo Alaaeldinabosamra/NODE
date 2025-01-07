@@ -122,9 +122,9 @@ if (tourDataForm)
     const description = document.getElementById('description').value;
     const imageCover = document.getElementById('imageCover').files[0];
     const dateIndex = document.getElementById('tourDate').value;
-    console.log('###############');
-    console.log(dateIndex);
-    console.log('###############');
+    // console.log('###############');
+    // console.log(dateIndex);
+    // console.log('###############');
 
     // handled date
     const startDates = []; // Store selected dates
@@ -132,22 +132,22 @@ if (tourDataForm)
     if (dateIndex) {
       // Format the selected date to "YYYY-MM-DD,HH:mm"
       const formattedDate = dateIndex.replace('T', ',').substring(0, 16);
-      console.log(formattedDate);
+      // console.log(formattedDate);
       // Push the formatted date into the startDates array
       startDates.push(formattedDate);
     }
 
-    console.log(
-      tourName,
-      duration,
-      maxGroupSize,
-      difficulty,
-      price,
-      summary,
-      description,
-      // imageCover,
-      startDates,
-    );
+    // console.log(
+    //   tourName,
+    //   duration,
+    //   maxGroupSize,
+    //   difficulty,
+    //   price,
+    //   summary,
+    //   description,
+    //   // imageCover,
+    //   startDates,
+    // );
     const formData = new FormData();
     formData.append('name', tourName);
     formData.append('duration', duration);
@@ -174,7 +174,7 @@ if (tourDataForm)
     // Handle cover image
     formData.append('imageCover', imageCover);
 
-    console.log(formData);
+    // console.log(formData);
     createTour(formData);
   });
 

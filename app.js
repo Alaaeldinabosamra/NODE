@@ -10,7 +10,7 @@ const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
 const hpp = require('hpp');
 const cookieParser = require('cookie-parser');
-
+const compression = require('compression');
 // custom modules
 const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/errorController');
@@ -37,13 +37,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(helmet());
 
 // init app environment status
-if (process.env.NODE_ENV === 'developmentt') {
-  app.use(morgan('dev'));
-  app.use((req, res, next) => {
-    console.log('Hello from the middleware!');
-    next();
-  });
-}
+// if (process.env.NODE_ENV === 'developmentt') {
+//   app.use(morgan('dev'));
+//   app.use((req, res, next) => {
+//     console.log('Hello from the middleware!');
+//     next();
+//   });
+// }
 
 // control user requests
 // allow 100 requests from the same IP: in one hour
@@ -78,6 +78,8 @@ app.use(
     ],
   }),
 );
+
+app.use(compression());
 
 // Test middleware
 app.use((req, res, next) => {

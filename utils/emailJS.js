@@ -16,7 +16,7 @@ const sendEmailJS = async (options) => {
       templateParams,
       'YOUR_USER_ID', // User ID from EmailJS
     );
-    console.log('Email successfully sent:', res);
+    // console.log('Email successfully sent:', res);
   } catch (error) {
     console.error('Failed to send email:', error);
   }

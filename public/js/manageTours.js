@@ -3,7 +3,7 @@ import { showAlert } from './alerts';
 
 export const createTour = async (data) => {
   try {
-    console.log(data);
+    // console.log(data);
     const res = await axios({
       method: 'POST',
       url: 'http://localhost:3000/api/v1/tours',
