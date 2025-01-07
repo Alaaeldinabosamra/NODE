@@ -30,3 +30,7 @@ will close app automatically when write command process.exit(1)
 //- Pug beautify extension + CMD + Shift + P and choose for format pug code and indentation
 
 | + space make space in pug template engine
+
+deploy on heroku 
+first register an account and download heroku CLI for OS
+>> heroku login  then login ur account in vs

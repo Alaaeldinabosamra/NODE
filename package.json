@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js",
+    "start": "node server.js",
+    "development": "nodemon server.js",
     "dev": "vercel dev",
     "start:prod": "cross-env NODE_ENV=production nodemon server.js",
     "debug": "ndb server.js",
@@ -50,5 +51,8 @@
     "eslint-plugin-react": "^7.37.2",
     "parcel-bundler": "^1.12.5",
     "prettier": "^3.4.2"
+  },
+  "engines": {
+    "node": ">=10.0.0"
   }
 }
