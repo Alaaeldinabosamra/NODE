@@ -1,0 +1,28 @@
+
+It sounds like you have a well-structured full-stack project with Node.js, Mongoose, and Pug templates. In this type of architecture, the goal is to cleanly separate concerns, such as routing, data handling, and UI presentation, making it easier to maintain and scale the application.
+
+Here is an outline of the folder structure you're likely using, along with a brief explanation of the purpose of each folder and file:
+
+Folder Structure Overview
+plaintext
+Copy code
+App/
+├── controllers/
+│   └── tourController.js    # Manages logic for tour-related routes
+├── models/
+│   └── tourModel.js         # Mongoose schema and model for tours
+├── routes/
+│   └── tourRoutes.js        # Defines the routes for tours
+├── views/
+│   ├── tour.pug             # Pug template for displaying tour details
+│   ├── layout.pug           # Base template for the layout
+├── public/
+│   └── js/
+│       └── displayMap.js     # Your JS code for displaying the map
+│   └── img/
+│       └── pin.png           # Marker icon image
+├── utils/
+│   └── someUtility.js       # Helper functions
+├── index.js                 # Main entry point for your app
+├── package.json             # Dependencies and scripts
+└── .env                     # Environment variables (e.g., database URI, API keys)
