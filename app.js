@@ -1,6 +1,5 @@
 // core modules
 const path = require('path');
-
 // third-party modules
 const express = require('express');
 const morgan = require('morgan');
@@ -51,8 +50,13 @@ const limiter = rateLimit({
   max: 100,
   windowMs: 60 * 60 * 1000,
   message: 'Too many requests from this IP, Please try again in an hour!',
+  keyGenerator: function (req, res) {
+    // استخدام X-Forwarded-For header
+    return req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+  },
 });
 app.use('/api', limiter);
+app.set('trust proxy', true);
 
 // Body parser, reading data from body into req.body
 app.use(express.json({ limit: '10kb' }));
